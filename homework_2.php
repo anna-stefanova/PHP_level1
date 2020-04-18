@@ -1,5 +1,23 @@
 <?php
-# Задание № 7
+# Задание №6
+# С помощью рекурсии организовать функцию возведения числа в степень
+
+function power($val, $pow) {
+    if ($pow == 0) {
+        return 1;
+    }
+    if ($pow == 1) {
+        return $val;
+    }
+    $val = $val * power($val, $pow - 1);
+    return $val;
+}
+
+echo power(2, 5) . '<br>';
+
+
+
+# Задание №7
 # Написать функцию, которая вычисляет текущее время и возвращает его в формате с правильными склонениями
 
 $hour = date('G');
@@ -38,5 +56,5 @@ function formatMinute($m) {
     return $format;
 }
 
-echo $hour  . ' ' . formatHour($hour) . ' ' . $minute . ' ' . formatMinute($minute);
+echo $hour  . ' ' . formatHour($hour) . ' ' . $minute . ' ' . formatMinute($minute) . '<br>';
 
