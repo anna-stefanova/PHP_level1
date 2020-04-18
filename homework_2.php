@@ -19,6 +19,20 @@ if (($a >= 0 && $b <= 0) ||
     echo "Сумма: $result<br>";
 }
 
+# Задание №2
+
+$a = rand(0, 15);
+function recurse($a) {
+    if ($a > 15) {
+        return;
+    }
+    echo $a . ' ';
+    recurse($a + 1);
+}
+
+recurse($a);
+echo '<br>';
+
 
 
 # Задание №4
