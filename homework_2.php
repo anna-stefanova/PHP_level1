@@ -1,4 +1,35 @@
 <?php
+# Задание №4
+# Реализовать функцию с тремя параметрами. В зависимости от
+# переданного значения операции выполнить одну из арифметических операций
+
+function mathOperation($arg1, $arg2, $operation) {
+    $result = null;
+    switch ($operation) {
+        case '+':
+            $result = $arg1 + $arg2;
+            break;
+        case '-':
+            $result = $arg1 - $arg2;
+            break;
+        case '*':
+            $result = $arg1 * $arg2;
+            break;
+        case '/':
+            $result = $arg1 / $arg2;
+            break;
+        default:
+            echo 'Введите одну из следующих арифметических операций: * , / , + , -';
+            break;
+    }
+    return $result;
+}
+
+echo 'Вычитание: ' . mathOperation(2, 3, '-') . '<br>';
+echo 'Сложение: ' . mathOperation(4, 6, '+') . '<br>';
+echo 'Деление: ' . mathOperation(5, 6, '/') . '<br>';
+echo 'Умножение: ' . mathOperation(7, 8, '*') . '<br>';
+
 # Задание №6
 # С помощью рекурсии организовать функцию возведения числа в степень
 
@@ -12,8 +43,10 @@ function power($val, $pow) {
     $val = $val * power($val, $pow - 1);
     return $val;
 }
+$value = 2;
+$pow = 6;
 
-echo power(2, 5) . '<br>';
+echo "$value в степени $pow равно: " . power(2, 5) . "<br>";
 
 
 
