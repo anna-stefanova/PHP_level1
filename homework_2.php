@@ -33,6 +33,23 @@ function recurse($a) {
 recurse($a);
 echo '<br>';
 
+# Задание №3
+
+function sum($a, $b) {
+    return $a + $b;
+}
+
+function divide($a, $b) {
+    return $a / $b;
+}
+
+function subtract($a, $b) {
+    return $a - $b;
+}
+
+function multiply($a, $b) {
+    return $a * $b;
+}
 
 
 # Задание №4
