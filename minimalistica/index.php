@@ -1,6 +1,12 @@
 <?php
 $currentYear = date('Y');
 $title = 'minimalistica';
+$menu = [
+        'home' => [],
+        'archive' => ['Item1', 'Item2', 'Item3'],
+        'contact' => []
+];
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,11 +19,19 @@ $title = 'minimalistica';
 <body>
 	<div id="content">
 		<h1><?= $title ?></h1>
-		
-		<ul id="menu">
-			<li><a href="#">home</a></li>
-			<li><a href="#">archive</a></li>
-			<li><a href="#">contact</a></li>
+
+        <ul id="menu">
+        <?php
+
+        foreach ($menu as $key => $value) {
+            echo "<li><a href='#'>$key</a>";
+            echo '<ul>';
+            foreach ($value as $item) {
+                echo "<li><a href='#'>$item</a></li>";
+            }
+            echo '</ul>';
+        }
+        ?>
 		</ul>
 	
 		<div class="post">
