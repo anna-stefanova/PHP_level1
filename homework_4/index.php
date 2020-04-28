@@ -1,3 +1,8 @@
+<?php
+include_once "config.php";
+include_once "photo.php";
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,39 +29,22 @@
 </head>
 <body>
 <h1>Фотографии</h1>
-<?php
-$dir_path_small = "images/small/";
-
-$extensions_array = ['jpg', 'png', 'jpeg', 'gif', 'ico', 'tiff'];
-if (is_dir($dir_path_small)) {
-    $files_small = scandir($dir_path_small);
-}
-$dir_path_big = "images/big/";
-
-if (is_dir($dir_path_big)) {
-    $files_big = scandir($dir_path_big);
-}
-
-?>
 <div class="container">
     <div class="main">
 
         <?php
-        //print_r($file); массив картинок
-        for ($i = 0; $i < count($files_small); $i++) :
-            if ($files_small[$i] != '.' && $files_small[$i] != '..') {
-                 ?>
-                <div class="small_img">
-                    <a href="big_photo.php?name=<?= $files_small[$i];?>" target='_blank'>
-                        <img src='<?php echo $dir_path_small . $files_small[$i]?>' style=''>
-                    </a>
-                    <p>Имя файла - <?= $files_small[$i]?></p>
 
-                </div>
-                    <?php
-                    if ($i % 5 == 1) {
-                        echo '<br>';
-                    }
+        for ($i=0; $i < count($images); $i++) : ?>
+            <div class="small_img">
+                <a href="big_image.php?name=<?=$images[$i] ?>" target='_blank'>
+                    <img src="<?=PATH_SMALL.$images[$i] ?>">
+
+                </a>
+                <p>Имя файла - <?= $images[$i]?></p>
+            </div>
+            <?php
+            if ($i % 5 == 5) {
+                echo '<br>';
             }
 
             endfor;
@@ -65,10 +53,10 @@ if (is_dir($dir_path_big)) {
     </div>
     <aside>
         <h2>Загрузите свое фото</h2>
-        <form action="server1.php" enctype="multipart/form-data" method="post">
+        <form action="#" enctype="multipart/form-data" method="post">
             <p>Выберите файл</p>
-            <p><input type="file" name="photo" accept="ima"></p>
-            <p><input type="submit" value="Сохранить"></p>
+            <p><input type="file" name="userfile"></p>
+            <p><button type="submit" name="send">Загрузить</button></p>
         </form>
     </aside>
 </div>
