@@ -1,6 +1,7 @@
 <?php
-include_once "config.php";
+require "config.php";
 include_once "photo.php";
+
 ?>
 
 <!doctype html>
@@ -11,6 +12,7 @@ include_once "photo.php";
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image Gallery</title>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
     <style>
         body {
             margin: 0 auto;
@@ -34,29 +36,37 @@ include_once "photo.php";
 
         <?php
 
-        for ($i=0; $i < count($images); $i++) : ?>
-            <div class="small_img">
-                <a href="big_image.php?name=<?=$images[$i] ?>" target='_blank'>
-                    <img src="<?=PATH_SMALL.$images[$i] ?>">
 
+        $sql = "select * from images ORDER BY seen DESC";
+        $res = mysqli_query($connect, $sql);
+
+        while ($data = mysqli_fetch_assoc($res)) {?>
+            <div class="small_img">
+                <a href="<?=$data['path']?>&id=<?= $data['id']?>" target='_blank'>
+                    <img src="<?= PATH_SMALL . $data['name']?>">
                 </a>
-                <p>Имя файла - <?= $images[$i]?></p>
+                <p>Имя файла - <?= $data['name'] ?></p>
+                <p>Размер файла: <?= $data['size'] ?> Кбайт</p>
+                <p>Просмотры: <?= $data['seen'] ?></p>
             </div>
             <?php
-            if ($i % 5 == 5) {
+            if ($data['id'] % 5 == 5) {
                 echo '<br>';
             }
 
-            endfor;
-            ?>
+        }
+
+        ?>
 
     </div>
-    <aside>
+    <aside class="gallery-upload">
         <h2>Загрузите свое фото</h2>
-        <form action="#" enctype="multipart/form-data" method="post">
-            <p>Выберите файл</p>
-            <p><input type="file" name="userfile"></p>
-            <p><button type="submit" name="send">Загрузить</button></p>
+        <form action="gallery_upload.php" enctype="multipart/form-data" method="post">
+            <p><input type="text" name="filename" placeholder="Имя файла..."></p>
+            <p><input type="text" name="filetitle" placeholder="Заголовок фото..."></p>
+            <p><input type="text" name="filedesc" placeholder="Описание фото..."></p>
+            <p><input type="file" name="file"></p>
+            <p><button type="submit" name="submit">ЗАГРУЗИТЬ</button></p>
         </form>
     </aside>
 </div>

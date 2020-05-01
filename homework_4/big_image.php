@@ -1,5 +1,13 @@
 <?php
 include_once 'config.php';
+
+view_update($_GET['id'], $connect);
+function view_update($id, $connect) {
+    $res = null;
+    $sql = "UPDATE images SET seen = seen + 1 WHERE  id = $id";
+    $res = mysqli_query($connect, $sql);
+    return $res;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

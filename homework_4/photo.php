@@ -1,4 +1,6 @@
 <?php
+
+
 function translit($string) {
     $translit = array(
         'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'yo', 'ж' => 'zh',
