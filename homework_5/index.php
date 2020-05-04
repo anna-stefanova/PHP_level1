@@ -40,7 +40,7 @@ include_once "photo.php";
         $sql = "select * from images ORDER BY seen DESC";
         $res = mysqli_query($connect, $sql);
 
-        while ($data = mysqli_fetch_assoc($res)) {?>
+        while ($data = mysqli_fetch_assoc($res)) :?>
             <div class="small_img">
                 <a href="<?=$data['path']?>&id=<?= $data['id']?>" target='_blank'>
                     <img src="<?= PATH_SMALL . $data['name']?>">
@@ -53,10 +53,7 @@ include_once "photo.php";
             if ($data['id'] % 5 == 5) {
                 echo '<br>';
             }
-
-        }
-
-        ?>
+        endwhile;?>
 
     </div>
     <aside class="gallery-upload">
